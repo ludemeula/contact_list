@@ -10,4 +10,6 @@ class User < ApplicationRecord
                                     uniqueness: { case_sensitive: true }
   validates :password, length: { minimum: 6 }
 
+  has_many :contacts
+
 end
