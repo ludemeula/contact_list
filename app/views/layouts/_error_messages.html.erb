@@ -3,7 +3,7 @@
     <div class="alert alert-danger">
       Ops! Encontramos <%= pluralize(object.errors.count, 'erro', 'erros') %>
       <ul>
-        <%= object.errors.full_messages do |msg| %>
+        <% object.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
