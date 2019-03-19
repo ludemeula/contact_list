@@ -28,28 +28,23 @@ class ContactsController < ApplicationController
   def create
     @contact = current_user.contacts.build(contact_params)
 
-    respond_to do |format|
-      if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
-        format.json { render :show, status: :created, location: @contact }
-      else
-        format.html { render :new }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
+    if @contact.save
+      flash[:success] = 'Contato cadastrado com sucesso!'
+      redirect_to contacts_path
+    else
+      render 'new'
     end
   end
 
   # PATCH/PUT /contacts/1
   # PATCH/PUT /contacts/1.json
   def update
-    respond_to do |format|
-      if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
-        format.json { render :show, status: :ok, location: @contact }
-      else
-        format.html { render :edit }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
+
+    if @contact.update(contact_params)
+      flash[:success] = 'Contato atualizado com sucesso!'
+      redirect_to contacts_url
+    else
+      render 'edit'
     end
   end
 
