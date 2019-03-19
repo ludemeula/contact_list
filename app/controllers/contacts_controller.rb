@@ -66,6 +66,8 @@ class ContactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
+      puts "aui"
+      puts params
       @contact = current_user.contacts.find(params[:id])
     end
 
